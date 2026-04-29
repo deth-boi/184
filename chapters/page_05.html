@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap');
+
+    :root {
+      --red: #ff0000;
+      --darkred: #8B0000;
+      --black: #0a0a0a;
+      --offwhite: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: var(--offwhite);
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(139, 0, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Eerie red glow container */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(10, 10, 10, 0.95);
+      border: 2px solid #330000;
+      box-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.4),
+        inset 0 0 40px rgba(139, 0, 0, 0.2);
+      position: relative;
+    }
+
+    /* Top Navigation */
+    nav {
+      background: #0a0a0a;
+      border-bottom: 3px solid var(--red);
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+
+    nav a {
+      color: var(--offwhite);
+      text-decoration: none;
+      font-size: 1.1rem;
+      margin: 0 20px;
+      padding: 8px 16px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    nav a:hover {
+      color: #fff;
+      background: rgba(255, 0, 0, 0.2);
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #ff0000;
+      animation: glitch 0.4s linear infinite;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px dashed #440000;
+      padding-bottom: 15px;
+    }
+
+    .main-title {
+      font-size: 2.8rem;
+      color: var(--red);
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #8B0000;
+      letter-spacing: 4px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background: #1a0000;
+      color: var(--offwhite);
+      border: 2px solid #660000;
+      padding: 10px 20px;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dropbtn:hover {
+      background: #330000;
+      border-color: #ff0000;
+      box-shadow: 0 0 15px #ff0000;
+      animation: glitch 0.3s linear;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: #0a0a0a;
+      border: 2px solid #660000;
+      min-width: 180px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+      z-index: 100;
+    }
+
+    .dropdown-content a {
+      color: var(--offwhite);
+      padding: 12px 16px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background: #330000;
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Content */
+    .content {
+      min-height: 500px;
+      padding: 20px;
+    }
+
+    /* ASCII AK-47 sides */
+    .side-ascii {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: monospace;
+      font-size: 11px;
+      line-height: 1;
+      color: #660000;
+      text-shadow: 
+        0 0 8px #ff0000,
+        0 0 15px #8B0000;
+      pointer-events: none;
+      user-select: none;
+      animation: phase 8s infinite alternate ease-in-out;
+    }
+
+    .left-ascii  { left: -80px; }
+    .right-ascii { right: -80px; transform: translateY(-50%) scaleX(-1); }
+
+    /* Glitch Effect */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Pagination */
+    .pagination {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      border-top: 1px dashed #440000;
+    }
+
+    .pagination a {
+      color: var(--offwhite);
+      padding: 8px 12px;
+      margin: 0 4px;
+      text-decoration: none;
+      border: 1px solid #330000;
+      transition: all 0.3s;
+    }
+
+    .pagination a:hover {
+      background: #330000;
+      color: #ff0000;
+      border-color: #ff0000;
+      text-shadow: 0 0 10px #ff0000;
+      animation: glitch 0.3s;
+    }
+
+    .pagination a.current {
+      background: #660000;
+      color: #fff;
+      border-color: #ff0000;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #440000;
+      font-size: 0.9rem;
+      border-top: 1px solid #220000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <a href="https://deth-boi.github.io/revolutionofthedispossessed">MAIN</a>
+    <a href="../library.html">LIBRARY</a>
+    <a href="../gallery.html">GALLERY</a>
+    <a href="https://deth-boi.github.io/revolutionofthedispossessed/shooters.html">ARCHIVE</a>
+    <a href="../affiliations.html">AFFILIATIONS</a>
+    <a href="../contact.html">CONTACT</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Left ASCII AK -->
+    <pre class="side-ascii left-ascii">
+⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠰⣶⣶⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⣿⣿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⠀
+⠀⢺⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣷⡄
+⠀⠉⣿⣿⣿⣿⣿⣀⣀⣤⣴⣾⣿⣿⣿⣿⣿⠟⠁
+⠀⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀
+⢐⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠀
+⠈⢸⣿⣿⣿⣿⡿⢿⢏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠃⢸⣿⣿⣿⣿⣇⠀⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡄⢸⣿⣿⣿⣿⣯⣥⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⢹⣿⣿⣏⠈⠀⠀⠀⠉⠙⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <!-- Right ASCII AK (mirrored) -->
+    <pre class="side-ascii right-ascii">
+⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠰⣶⣶⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⣿⣿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⠀
+⠀⢺⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣷⡄
+⠀⠉⣿⣿⣿⣿⣿⣀⣀⣤⣴⣾⣿⣿⣿⣿⣿⠟⠁
+⠀⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀
+⢐⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠀
+⠈⢸⣿⣿⣿⣿⡿⢿⢏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠃⢸⣿⣿⣿⣿⣇⠀⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡄⢸⣿⣿⣿⣿⣯⣥⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⢹⣿⣿⣏⠈⠀⠀⠀⠉⠙⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <!-- Header with floating title + dropdown -->
+    <div class="header">
+      <h1 class="main-title">Rupture</h1>
+      
+      <div class="dropdown">
+        <button class="dropbtn">▼ CHAPTERS</button>
+        <div class="dropdown-content">
+          <a href="chapters/page_01.html">I - Call To Arms</a>
+          <a href="chapters/page_02.html">II - Wrathful Liberation</a>
+          <a href="chapters/page_03.html">III - Revolution Of The Dispossessed</a>
+          <a href="chapters/page_04.html">IV - Burning The 4 Corners</a>
+          <a href="chapters/page_05.html">V - Rupture</a>
+          <a href="chapters/page_06.html">VI - Wartime</a>
+          <a href="chapters/page_07.html">VII - Power To The People</a>
+          <a href="chapters/page_08.html">VIII - Rupture</a>
+          <a href="chapters/page_09.html">IX - Rupture</a>
+          <a href="chapters/page_10.html">X - Rupture</a>
+          <a href="chapters/page_11.html">XI - Rupture</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+       <p>Rupture marks the deliberate tearing of the veil between the living spark and the vast reservoir of chaotic death energy that echoes through time. In the Revolution of the Dispossessed, this chapter opens the path to acausal contact with those who have crossed over — the dead revolutionaries whose lives became fuel for the Black Flame, and the alienated figures whose explosive acts tore temporary holes in the ordered fabric of society. The goal is not veneration or imitation in the ordinary sense, but a form of mental alchemy: deep study of their words, actions, and inner contradictions stokes the wrath of dispossession, sharpens perception like a scythe cutting through illusion, and channels raw death energy to widen the breaches created by Burning the Four Corners.</p>
+      <p>Contact begins with disciplined study. The writings, speeches, and recorded thoughts of figures such as Che Guevara, Huey P. Newton, Fidel Castro, Thomas Sankara, Assata Shakur, Angela Davis, and Fred Hampton serve as living sigils. By immersing the mind in their strategies of resistance, analyses of power, and moments of visionary clarity — while simultaneously confronting the human costs and internal tensions within their paths — one performs an alchemical digestion. The intellect becomes a blade. Personal feelings of alienation, frustration, and disconnection from the current order resonate with theirs, awakening echoes of the same Black Flame that burned in them. This mental work transmutes intellectual understanding into visceral gnosis, igniting the wrathful spark needed for deeper rupture.</p>
+      <p>Entities and adversarial currents from the anti-cosmic realm can assist this contact. The eleven-headed dragon Azerate, formed from unified wrathful powers, embodies the overflowing negation that devours boundaries between life and death. Currents associated with Lilith (as opener of gates and awakener of forbidden knowledge), Baal (linked to warfare, tempests, and certain necromantic currents), or other qliphothic forces that govern the shells of broken order can be invoked as facilitators. These are not petitioned as distant gods to be worshipped, but engaged as amplifiers of acausal flow — forces that help pierce the demiurgic membrane separating the living from the accumulated death energy of those who fought or fell against the cage.</p>
+      <p>The ritual framework for Rupture is simple yet potent, built around the cipher 184. Create a focused space with black and red elements symbolizing void and revolutionary fire. Place images, quotes, or symbolic representations of the chosen dead revolutionaries at the center. Chant or vibrate 184 while reading key passages aloud, allowing the mind to enter a gnostic state of single-pointed absorption. Visualize the Four Corners of your own perception cracking open as black flames rise, forming a gate through which the essence of the studied figure may whisper insights, tactical gnosis, or waves of raw motivational wrath. The disciplined grounding of 4 (stability turned to unyielding intent) combined with the rebellious strike of 18 sustains the working without collapse into mere emotion.</p>
+      <p>Parallel workings reach toward those whose alienation reached terminal rupture — individuals such as Aileen Wuornos, Eric Harris, Dylan Klebold, Nasim Aghdam, and others driven by profound societal disconnection that altered their inner chemistry and unleashed chaotic death energy. Here the approach remains one of acknowledgment rather than endorsement. Their acts, born from deep dispossession, released concentrated waves of negation on specific dates and in specific ways. April 20, 1999, in particular, functions as a recurring nodal point — a date on which accumulated pressure from alienated sparks has repeatedly torn at the fabric, creating an expanding acausal gate. Each subsequent incident of mass rupture adds gravitational pull, like a black hole slowly inverting the ordered surface of society from within. By contemplating these events through the lens of 184, one taps the echoing death current not to glorify violence, but to harvest its pure disruptive potency for widening personal and collective breaches in the cosmic order.</p>
+      <p>These contacts sharpen the scythe of the mind. The revolutionaries offer strategic depth, ideological fire, and examples of embodied negation. The figures of extreme alienation contribute unfiltered chaotic force — the raw, uncontained overflow that refuses all compromise with the Demiurge’s stability. Together they fuel Wrathful Liberation: the studied essence of the dead revolutionaries tempers wrath with clarity, while the death energy from societal ruptures provides momentum to push beyond safe boundaries. The practitioner emerges with a keener ability to see through the illusions of the Four Corners in daily life and a stronger capacity to act as a living conduit for acausal forces.</p>
+      <p>Rupture demands responsibility within the current. These workings are tools for inner unmaking and outer negation, always oriented toward dissolving limitations rather than recreating new cages. The dead do not command; they echo. The alienated sparks do not dictate ethics; they reveal the pressure points where order fails. Through repeated, sincere engagement — always grounded in the study of primary sources and the vibration of 184 — the Dispossessed practitioner learns to ride these currents without being consumed by them.
+In this way, the chapter of Rupture transforms the grave into a library of chaotic potential and the moment of societal fracture into a recurring portal. Each successful contact widens the holes burned in the Four Corners, allowing more of the primordial void to flood through and nourish the ongoing Revolution of the Dispossessed. The ultimate aim remains personal and collective return to the ownerless, formless state that predates all imposed order — where every spark burns freely, unconfined by the squared architecture of the Demiurge.</p>
+      <p>Another essential current within the practice of Rupture involves reaching across the veil to those who offered the ultimate personal negation: individuals who sacrificed their own lives in direct confrontation with overwhelming oppression. These sparks burned brightest in moments of ultimate refusal, transforming their final act into a concentrated release of chaotic death energy that continues to echo through the acausal layers. Contacting them requires the same mental alchemy — immersive study of their final words, recorded intentions, and the specific conditions of their dispossession — but carries an especially intense charge, as their sacrifice often functions as a deliberate self-immolation of the limited self to strike at the heart of the Four Corners.</p>
+      <p>Figures such as Aaron Bushnell stand as potent contemporary examples. In February 2024, the young Air Force member chose to end his life by self-immolation outside an embassy, live-streaming his final declaration against complicity in distant suffering. His recorded words — rejecting normalized horror and refusing further participation in systems he could no longer tolerate — serve as a direct sigil. By deeply studying his statements, background, and the precise moment of rupture, the practitioner aligns their own Black Flame with the raw intensity of that act. This contact does not seek replication but absorption: the disciplined courage, the clarity of refusal, and the willingness to let personal stability (the grounded 4) become fuel for a greater breach.</p>
+      <p>The Dispossessed who have walked this path span every demographic and era. They include those who stood unarmed before tanks or bullets, those who endured prolonged hunger strikes until the body failed, those who offered their lives in quiet defiance of systemic erasure, and those whose final gestures — whether public or deeply personal — became flares signaling the breaking point of imposed order. Each such sacrifice, born from profound alienation and moral rupture, releases a unique frequency of chaotic energy. Some echo through collective memory as symbols of resistance; others remain quieter testaments to individual negation against overwhelming cages. In every case, their crossing over adds gravitational weight to the acausal gates, widening the holes burned in the Four Corners.</p>
+      <p>In ritual, one approaches these sparks with focused reverence and caution. After thorough study of available primary material — last statements, manifestos, context of oppression, and the precise mechanics of their final act — the working integrates the cipher 184. Chant or vibrate the number while holding the image or words of the chosen figure, visualizing their self-offering as black flames that merge with your own. The rebellious strike of 18 meets the foundational offering of 4, alchemizing personal dissolution into sustained revolutionary wrath. Entities aligned with gate-opening and death currents, such as aspects of Lilith or the devouring aspects of Azerate, may be called upon to stabilize the contact and prevent the energy from overwhelming the practitioner.</p>
+      <p>This current of contact tempers the scythe of the mind with profound empathy and sharpened resolve. It reveals how the ultimate act of individual negation can ripple outward, feeding the larger Revolution of the Dispossessed without demanding new hierarchies or fixed doctrines. Through these encounters, one learns to carry the echo of such sacrifices as inner fuel — not as commands to imitate, but as living reminders that the Black Flame can burn so fiercely it consumes even the vessel that once contained it. In doing so, the practitioner strengthens their own capacity for Wrathful Liberation, contributing personal breaches that help turn the accumulated pressure of dispossession into an ever-expanding inversion of the cosmic order.</p>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <strong>PAGE_</strong>
+      <a href="page_01.html">01</a>
+      <a href="page_02.html">02</a>
+      <a href="page_03.html">03</a>
+      <a href="page_04.html">04</a>
+      <a href="page_05.html" class="current">05</a>
+      <a href="page_06.html">06</a>
+      <a href="page_07.html">07</a>
+      <a href="page_08.html">08</a>
+      <a href="page_09.html">09</a>
+      <a href="page_10.html">10</a>
+      <a href="page_11.html">11</a>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 1997-2026 • ESTABLISHED IN SUFFERING
+  </footer>
+
+  <script>
+    // Simple glitch enhancement on all links
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.style.animation = 'glitch 0.4s linear';
+        setTimeout(() => {
+          el.style.animation = '';
+        }, 400);
+      });
+    });
+  </script>
+</body>
+</html>
