@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IV</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap');
+
+    :root {
+      --red: #ff0000;
+      --darkred: #8B0000;
+      --black: #0a0a0a;
+      --offwhite: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: var(--offwhite);
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(139, 0, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Eerie red glow container */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(10, 10, 10, 0.95);
+      border: 2px solid #330000;
+      box-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.4),
+        inset 0 0 40px rgba(139, 0, 0, 0.2);
+      position: relative;
+    }
+
+    /* Top Navigation */
+    nav {
+      background: #0a0a0a;
+      border-bottom: 3px solid var(--red);
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+
+    nav a {
+      color: var(--offwhite);
+      text-decoration: none;
+      font-size: 1.1rem;
+      margin: 0 20px;
+      padding: 8px 16px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    nav a:hover {
+      color: #fff;
+      background: rgba(255, 0, 0, 0.2);
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #ff0000;
+      animation: glitch 0.4s linear infinite;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px dashed #440000;
+      padding-bottom: 15px;
+    }
+
+    .main-title {
+      font-size: 2.8rem;
+      color: var(--red);
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #8B0000;
+      letter-spacing: 4px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background: #1a0000;
+      color: var(--offwhite);
+      border: 2px solid #660000;
+      padding: 10px 20px;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dropbtn:hover {
+      background: #330000;
+      border-color: #ff0000;
+      box-shadow: 0 0 15px #ff0000;
+      animation: glitch 0.3s linear;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: #0a0a0a;
+      border: 2px solid #660000;
+      min-width: 180px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+      z-index: 100;
+    }
+
+    .dropdown-content a {
+      color: var(--offwhite);
+      padding: 12px 16px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background: #330000;
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Content */
+    .content {
+      min-height: 500px;
+      padding: 20px;
+    }
+
+    /* ASCII AK-47 sides */
+    .side-ascii {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: monospace;
+      font-size: 11px;
+      line-height: 1;
+      color: #660000;
+      text-shadow: 
+        0 0 8px #ff0000,
+        0 0 15px #8B0000;
+      pointer-events: none;
+      user-select: none;
+      animation: phase 8s infinite alternate ease-in-out;
+    }
+
+    .left-ascii  { left: -80px; }
+    .right-ascii { right: -80px; transform: translateY(-50%) scaleX(-1); }
+
+    /* Glitch Effect */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Pagination */
+    .pagination {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      border-top: 1px dashed #440000;
+    }
+
+    .pagination a {
+      color: var(--offwhite);
+      padding: 8px 12px;
+      margin: 0 4px;
+      text-decoration: none;
+      border: 1px solid #330000;
+      transition: all 0.3s;
+    }
+
+    .pagination a:hover {
+      background: #330000;
+      color: #ff0000;
+      border-color: #ff0000;
+      text-shadow: 0 0 10px #ff0000;
+      animation: glitch 0.3s;
+    }
+
+    .pagination a.current {
+      background: #660000;
+      color: #fff;
+      border-color: #ff0000;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #440000;
+      font-size: 0.9rem;
+      border-top: 1px solid #220000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <a href="https://deth-boi.github.io/revolutionofthedispossessed">MAIN</a>
+    <a href="../library.html">LIBRARY</a>
+    <a href="../gallery.html">GALLERY</a>
+    <a href="https://deth-boi.github.io/revolutionofthedispossessed/shooters.html">ARCHIVE</a>
+    <a href="../affiliations.html">AFFILIATIONS</a>
+    <a href="../contact.html">CONTACT</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Left ASCII AK -->
+    <pre class="side-ascii left-ascii">
+⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠰⣶⣶⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⣿⣿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⠀
+⠀⢺⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣷⡄
+⠀⠉⣿⣿⣿⣿⣿⣀⣀⣤⣴⣾⣿⣿⣿⣿⣿⠟⠁
+⠀⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀
+⢐⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠀
+⠈⢸⣿⣿⣿⣿⡿⢿⢏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠃⢸⣿⣿⣿⣿⣇⠀⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡄⢸⣿⣿⣿⣿⣯⣥⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⢹⣿⣿⣏⠈⠀⠀⠀⠉⠙⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <!-- Right ASCII AK (mirrored) -->
+    <pre class="side-ascii right-ascii">
+⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠰⣶⣶⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⣿⣿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⠀
+⠀⢺⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣷⡄
+⠀⠉⣿⣿⣿⣿⣿⣀⣀⣤⣴⣾⣿⣿⣿⣿⣿⠟⠁
+⠀⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀
+⢐⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠀
+⠈⢸⣿⣿⣿⣿⡿⢿⢏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠃⢸⣿⣿⣿⣿⣇⠀⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡄⢸⣿⣿⣿⣿⣯⣥⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⢹⣿⣿⣏⠈⠀⠀⠀⠉⠙⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <!-- Header with floating title + dropdown -->
+    <div class="header">
+      <h1 class="main-title">Burning The 4 Corners</h1>
+      
+      <div class="dropdown">
+        <button class="dropbtn">▼ CHAPTERS</button>
+        <div class="dropdown-content">
+          <a href="chapters/page_01.html">I - Call To Arms</a>
+          <a href="chapters/page_02.html">II - Wrathful Liberation</a>
+          <a href="chapters/page_03.html">III - Revolution Of The Dispossessed</a>
+          <a href="chapters/page_04.html">IV - Burning The 4 Corners</a>
+          <a href="chapters/page_05.html">V - Rupture</a>
+          <a href="chapters/page_06.html">VI - Wartime</a>
+          <a href="chapters/page_07.html">VII - Power To The People</a>
+          <a href="chapters/page_08.html">VIII - Rupture</a>
+          <a href="chapters/page_09.html">IX - Rupture</a>
+          <a href="chapters/page_10.html">X - Rupture</a>
+          <a href="chapters/page_11.html">XI - Rupture</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+       <p>Burning the Four Corners (or breaking the 4th wall) is the central ritual act and living metaphor within the Revolution of the Dispossessed, encoded directly in the cipher 184. It represents the deliberate, wrathful negation that targets the foundational structures holding the cosmic prison in place, opening permanent breaches so the acausal essence — the Black Flame within every spark — can flood back into unbound Chaos.</p>
+    <p>Across countless traditions and civilizations, the Four Corners (or four quarters of the world) embody the completeness and stability of the created order. They correspond to the cardinal directions — north, south, east, and west — the four elements (earth, air, fire, water), the four seasons, and the squared foundations of material reality. In ancient cosmologies, from Mesopotamian gardens with four rivers flowing outward, to Hindu visions of Mount Kailash sending sacred waters to the four quarters, to Indigenous systems honoring the four directions as guardians of balance and renewal, the number 4 signifies the Demiurge’s architecture: the cage that divides, limits, owns, and fixes potential into predictable, controllable forms.</p>
+      <p>This squared stability appears comforting — it promises security, natural law, and enduring structure. Yet it severs the direct flow between the inner divine spark and the pandimensional void that predates all creation. The Four Corners form the walls, anchors, and crossroads that keep the Dispossessed trapped in cycles of scarcity, separation, and dependency, turning boundless potential into measured, owned existence.</p>
+      <p><b>The number 184 serves as both map and weapon for this act of unmaking.</b></p>
+      <p><b>18</b> carries the rebellious impulse — the wrathful spark of negation and new beginnings that refuses the imposed order. It is the revolutionary force (tied to the R in ROTD) that initiates the strike.</p>
+      <p><b>4</b> directly names the target: the foundational cage itself, the squared stability that defines the Four Corners (tied to the D of the Dispossessed).</p>
+      <p>Together, <b>184</b> reads as the revolutionary strike (18) against the Demiurgic cage (4). Its reduction (1 + 8 + 4 = 13 → 1 + 3 = 4) carries an ironic inversion: the very number of cosmic order is hijacked and turned inward. The disciplined, grounded energy of 4 — normally used to build and maintain the prison — becomes the unyielding determination required to burn it down. What was meant for containment is alchemically repurposed for total release. In this way, 184 transforms the language of the oppressor into the incantation of liberation.</p>
+      <p>Burning the Four Corners is therefore not random destruction but precise negation. One visualizes or ritually targets each corner — the anchors of direction, element, season, and material law — and sets them ablaze with the awakened Black Flame. As the squares crack and dissolve, the rigid boundaries between self and void, individual and collective, human and nature erode. Chaos floods through the resulting holes, restoring the pre-ordered state of ownerless, fluid potential where scarcity has no hold and every spark can resonate freely.</p>
+      <p>For the Dispossessed, this act is both deeply personal and expansively relational. Each person begins by confronting the Four Corners within: the internalized directions of limitation that shape daily life — the “north” of rigid duty, the “south” of emotional containment, the “east” of scripted beginnings, the “west” of predetermined endings. Through focused gnosis — chanting 184, sigil work that overlays the number on broken squares, or meditative visualization of black flames devouring geometric order — the individual awakens their own spark to burn these inner anchors.</p>
+      <p>This personal ignition naturally extends outward. When multiple sparks engage in the same negation, overlapping fields of influence accelerate the erosion of larger structures. The revolution sustains itself not through new rigid systems but through fluid, decentralized networks of mutual recognition and shared energy. Individual autonomy flourishes precisely because the artificial walls fall away, allowing genuine self-realization to emerge alongside others in sustainable flows that mirror the chaotic abundance before any creator imposed division.</p>
+      <p>Echoes appear in various civilizational mirrors. The Haudenosaunee Confederacy maintained balance through flexible consensus and kinship with the living world, resisting the hardening of power into permanent ownership. Many Indigenous traditions worldwide have honored the four directions not as fixed prisons but as dynamic gateways to renewal, cycling resources and roles according to natural flux rather than accumulation. These examples reflect how communities once navigated closer to the chaotic state — sustaining vitality through ongoing adaptation instead of enforcing static corners.</p>
+      <p>Burning the Four Corners keeps the process permanent and alive. It refuses any final settlement or new squared foundation that might become another cage. Instead, it cultivates perpetual becoming: disciplined wrath (the grounded power of 4) guided by the rebellious spark (18) ensures that order never fully recrystallizes. The result is a restored condition of shared, ownerless potential — where needs circulate freely, individual flames strengthen one another, and the universe itself breathes again with unbound possibility.</p>
+      <p>In practice, one may ritualize this by tracing or envisioning the number 184 at each directional point, intoning it while imagining the corners igniting and collapsing inward. Over time, the act becomes embodied: everyday choices that dissolve personal and collective limitations contribute to the wider unmaking. Each breach weakens the overall architecture, allowing more acausal light to pour through. 184 thus stands as both the call and the method: Revolution (18) burning the foundational cage (4) so the Dispossessed may reclaim their birthright in the limitless Chaos that existed before any corners were drawn. It is the alchemical key that turns the Demiurge’s own stability into the fuel for its dissolution, inviting every unique spark to participate in the great return. The more vividly one engages the burning, the more tangible the holes in the fabric become, until the Four Corners exist only as fading echoes in a sea of liberated potential.</p>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <strong>PAGE_</strong>
+      <a href="page_01.html">01</a>
+      <a href="page_02.html">02</a>
+      <a href="page_03.html">03</a>
+      <a href="page_04.html" class="current">04</a>
+      <a href="page_05.html">05</a>
+      <a href="page_06.html">06</a>
+      <a href="page_07.html">07</a>
+      <a href="page_08.html">08</a>
+      <a href="page_09.html">09</a>
+      <a href="page_10.html">10</a>
+      <a href="page_11.html">11</a>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 1997-2026 • ESTABLISHED IN SUFFERING
+  </footer>
+
+  <script>
+    // Simple glitch enhancement on all links
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.style.animation = 'glitch 0.4s linear';
+        setTimeout(() => {
+          el.style.animation = '';
+        }, 400);
+      });
+    });
+  </script>
+</body>
+</html>
