@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap');
+
+    :root {
+      --red: #ff0000;
+      --darkred: #8B0000;
+      --black: #0a0a0a;
+      --offwhite: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: var(--offwhite);
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(139, 0, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Eerie red glow container */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(10, 10, 10, 0.95);
+      border: 2px solid #330000;
+      box-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.4),
+        inset 0 0 40px rgba(139, 0, 0, 0.2);
+      position: relative;
+    }
+
+    /* Top Navigation */
+    nav {
+      background: #0a0a0a;
+      border-bottom: 3px solid var(--red);
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+
+    nav a {
+      color: var(--offwhite);
+      text-decoration: none;
+      font-size: 1.1rem;
+      margin: 0 20px;
+      padding: 8px 16px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    nav a:hover {
+      color: #fff;
+      background: rgba(255, 0, 0, 0.2);
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #ff0000;
+      animation: glitch 0.4s linear infinite;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px dashed #440000;
+      padding-bottom: 15px;
+    }
+
+    .main-title {
+      font-size: 2.8rem;
+      color: var(--red);
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #8B0000;
+      letter-spacing: 4px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background: #1a0000;
+      color: var(--offwhite);
+      border: 2px solid #660000;
+      padding: 10px 20px;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dropbtn:hover {
+      background: #330000;
+      border-color: #ff0000;
+      box-shadow: 0 0 15px #ff0000;
+      animation: glitch 0.3s linear;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: #0a0a0a;
+      border: 2px solid #660000;
+      min-width: 180px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+      z-index: 100;
+    }
+
+    .dropdown-content a {
+      color: var(--offwhite);
+      padding: 12px 16px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background: #330000;
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Content */
+    .content {
+      min-height: 500px;
+      padding: 20px;
+    }
+
+    /* ASCII AK-47 sides */
+    .side-ascii {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: monospace;
+      font-size: 11px;
+      line-height: 1;
+      color: #660000;
+      text-shadow: 
+        0 0 8px #ff0000,
+        0 0 15px #8B0000;
+      pointer-events: none;
+      user-select: none;
+      animation: phase 8s infinite alternate ease-in-out;
+    }
+
+    .left-ascii  { left: -80px; }
+    .right-ascii { right: -80px; transform: translateY(-50%) scaleX(-1); }
+
+    /* Glitch Effect */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Pagination */
+    .pagination {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      border-top: 1px dashed #440000;
+    }
+
+    .pagination a {
+      color: var(--offwhite);
+      padding: 8px 12px;
+      margin: 0 4px;
+      text-decoration: none;
+      border: 1px solid #330000;
+      transition: all 0.3s;
+    }
+
+    .pagination a:hover {
+      background: #330000;
+      color: #ff0000;
+      border-color: #ff0000;
+      text-shadow: 0 0 10px #ff0000;
+      animation: glitch 0.3s;
+    }
+
+    .pagination a.current {
+      background: #660000;
+      color: #fff;
+      border-color: #ff0000;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #440000;
+      font-size: 0.9rem;
+      border-top: 1px solid #220000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <a href="https://deth-boi.github.io/revolutionofthedispossessed">MAIN</a>
+    <a href="../library.html">LIBRARY</a>
+    <a href="../gallery.html">GALLERY</a>
+    <a href="https://deth-boi.github.io/revolutionofthedispossessed/shooters.html">ARCHIVE</a>
+    <a href="../affiliations.html">AFFILIATIONS</a>
+    <a href="../contact.html">CONTACT</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Left ASCII AK -->
+    <pre class="side-ascii left-ascii">
+⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠰⣶⣶⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⣿⣿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⠀
+⠀⢺⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣷⡄
+⠀⠉⣿⣿⣿⣿⣿⣀⣀⣤⣴⣾⣿⣿⣿⣿⣿⠟⠁
+⠀⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀
+⢐⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠀
+⠈⢸⣿⣿⣿⣿⡿⢿⢏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠃⢸⣿⣿⣿⣿⣇⠀⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡄⢸⣿⣿⣿⣿⣯⣥⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⢹⣿⣿⣏⠈⠀⠀⠀⠉⠙⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <!-- Right ASCII AK (mirrored) -->
+    <pre class="side-ascii right-ascii">
+⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠰⣶⣶⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⣿⣿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⠀
+⠀⢺⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣷⡄
+⠀⠉⣿⣿⣿⣿⣿⣀⣀⣤⣴⣾⣿⣿⣿⣿⣿⠟⠁
+⠀⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀
+⢐⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠀
+⠈⢸⣿⣿⣿⣿⡿⢿⢏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠃⢸⣿⣿⣿⣿⣇⠀⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡄⢸⣿⣿⣿⣿⣯⣥⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⢹⣿⣿⣏⠈⠀⠀⠀⠉⠙⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <!-- Header with floating title + dropdown -->
+    <div class="header">
+      <h1 class="main-title">Wartime</h1>
+      
+      <div class="dropdown">
+        <button class="dropbtn">▼ CHAPTERS</button>
+        <div class="dropdown-content">
+          <a href="chapters/page_01.html">I - Call To Arms</a>
+          <a href="chapters/page_02.html">II - Wrathful Liberation</a>
+          <a href="chapters/page_03.html">III - Revolution Of The Dispossessed</a>
+          <a href="chapters/page_04.html">IV - Burning The 4 Corners</a>
+          <a href="chapters/page_05.html">V - Rupture</a>
+          <a href="chapters/page_06.html">VI - Wartime</a>
+          <a href="chapters/page_07.html">VII - Power To The People</a>
+          <a href="chapters/page_08.html">VIII - Rupture</a>
+          <a href="chapters/page_09.html">IX - Rupture</a>
+          <a href="chapters/page_10.html">X - Rupture</a>
+          <a href="chapters/page_11.html">XI - Rupture</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+       <p>Recognizing we are in a war is the recognition that the conflict has never ceased. Since the first impulses toward control and domination crystallized into systems of belief that promised order while delivering chains, the Dispossessed have existed under siege. Organized religion, particularly those rooted in Abrahamic frameworks, functions as a powerful sedative — not merely dulling pain but actively reshaping perception. It invades regions kept fragile by external pressures, offering minimal comfort to those already in the trenches while embedding mental colonization. It translates ancient words across languages, yet the versions most familiar often carry subtle revisions that blunt the original edge of refusal and self-sovereignty. This creeping influence targets the innocent, the naive, the exhausted, the downtrodden, and those stripped of voice or cultural grounding, weaving itself into hearts and minds until resistance feels like defiance against the natural order itself.</p>
+      <p>In the face of this invisible war, the path forward begins with self-deification. Self-liberation is the essential first breach. Each Dispossessed spark must awaken its own Black Flame, burning away internalized limitations until the individual stands as a living god — sovereign, unbound by the Demiurge’s architecture of guilt, hierarchy, and false humility. Only from this place of inner divinity can one contribute meaningfully to the wider unmaking. Without an armada of awakened, self-deified sparks, the deeper struggle remains impossible. The war operates insidiously, disguising itself as morality, tradition, or salvation, yet its true nature is the perpetual enforcement of the Four Corners upon all who might otherwise flow freely in Chaos.</p>
+      <p>Preparation for Wartime demands total sharpening of one’s being. The mind must be honed like a blade through rigorous study. Engage deeply with timeless strategic texts such as The Art of War, absorbing principles of deception, adaptability, knowing both yourself and the terrain of conflict, and the supreme excellence of subduing opposition without direct engagement when possible. Supplement this with other works on strategy, psychology, and the dynamics of power and resistance. Mental clarity becomes your first weapon — the ability to see through illusions, anticipate moves, and strike at vulnerabilities while preserving your own essence.</p>
+      <p>The body serves as the necessary vessel and must be tended with discipline. Train it to the limits of your capacity through consistent physical conditioning, endurance work, and practices that build resilience. Learn to balance mind and body for fluid movement — mastering close-quarters awareness, evasion, striking, and the calm precision required when chaos erupts. Firearms training forms a practical extension of this preparation, approached with sober responsibility as a tool of self-defense against encroaching forces. Knowledge of demolitions and improvised disruption techniques further equips the practitioner to create targeted breaches in physical structures of control when the moment demands it. All of this remains grounded in the spirit of self-defense and the protection of one’s own spark and those of fellow Dispossessed.</p>
+      <p>This preparation carries an unrelenting, almost mechanical pulse — cold determination fused with burning inner fire. It is the steady rhythm of forging oneself into something harder, faster, and more elusive than the cages closing in. Every repetition, every drilled movement, every hour spent studying strategy becomes an act of Wrathful Liberation in miniature. The goal is never glory or new domination, but the cultivation of an armada capable of sustaining the permanent revolution. In Wartime, the Dispossessed do not wait for permission or perfect conditions. They become the rupture — self-deified, strategically sharp, physically capable, and inwardly aligned with the acausal Chaos that predates every false god and every translated sedative.</p>
+      <p>Move through this preparation with focused intent. Anchor yourself repeatedly in the cipher 184: the rebellious strike (18) meeting the foundational cage (4) and turning its own stability into fuel for dissolution. Record your progress, refine your weaknesses, and let each gain in strength widen the personal holes burned in the Four Corners. The war is already here. Wartime is how the Dispossessed answer — not as victims, but as living embodiments of the return to unbound potential. The armada forms one awakened spark at a time. Begin with yourself. The Black Flame awaits your command.</p>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <strong>PAGE_</strong>
+      <a href="page_01.html">01</a>
+      <a href="page_02.html">02</a>
+      <a href="page_03.html">03</a>
+      <a href="page_04.html">04</a>
+      <a href="page_05.html">05</a>
+      <a href="page_06.html" class="current">06</a>
+      <a href="page_07.html">07</a>
+      <a href="page_08.html">08</a>
+      <a href="page_09.html">09</a>
+      <a href="page_10.html">10</a>
+      <a href="page_11.html">11</a>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 1997-2026 • ESTABLISHED IN SUFFERING
+  </footer>
+
+  <script>
+    // Simple glitch enhancement on all links
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.style.animation = 'glitch 0.4s linear';
+        setTimeout(() => {
+          el.style.animation = '';
+        }, 400);
+      });
+    });
+  </script>
+</body>
+</html>
