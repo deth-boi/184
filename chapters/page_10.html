@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap');
+
+    :root {
+      --red: #ff0000;
+      --darkred: #8B0000;
+      --black: #0a0a0a;
+      --offwhite: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: var(--offwhite);
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(139, 0, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Eerie red glow container */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(10, 10, 10, 0.95);
+      border: 2px solid #330000;
+      box-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.4),
+        inset 0 0 40px rgba(139, 0, 0, 0.2);
+      position: relative;
+    }
+
+    /* Top Navigation */
+    nav {
+      background: #0a0a0a;
+      border-bottom: 3px solid var(--red);
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+
+    nav a {
+      color: var(--offwhite);
+      text-decoration: none;
+      font-size: 1.1rem;
+      margin: 0 20px;
+      padding: 8px 16px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    nav a:hover {
+      color: #fff;
+      background: rgba(255, 0, 0, 0.2);
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #ff0000;
+      animation: glitch 0.4s linear infinite;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px dashed #440000;
+      padding-bottom: 15px;
+    }
+
+    .main-title {
+      font-size: 2.8rem;
+      color: var(--red);
+      text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #8B0000;
+      letter-spacing: 4px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background: #1a0000;
+      color: var(--offwhite);
+      border: 2px solid #660000;
+      padding: 10px 20px;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dropbtn:hover {
+      background: #330000;
+      border-color: #ff0000;
+      box-shadow: 0 0 15px #ff0000;
+      animation: glitch 0.3s linear;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: #0a0a0a;
+      border: 2px solid #660000;
+      min-width: 180px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+      z-index: 100;
+    }
+
+    .dropdown-content a {
+      color: var(--offwhite);
+      padding: 12px 16px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background: #330000;
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Content */
+    .content {
+      min-height: 500px;
+      padding: 20px;
+    }
+
+    /* ASCII AK-47 sides */
+    .side-ascii {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: monospace;
+      font-size: 11px;
+      line-height: 1;
+      color: #660000;
+      text-shadow: 
+        0 0 8px #ff0000,
+        0 0 15px #8B0000;
+      pointer-events: none;
+      user-select: none;
+      animation: phase 8s infinite alternate ease-in-out;
+    }
+
+    .left-ascii  { left: -80px; }
+    .right-ascii { right: -80px; transform: translateY(-50%) scaleX(-1); }
+
+    /* Glitch Effect */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Pagination */
+    .pagination {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      border-top: 1px dashed #440000;
+    }
+
+    .pagination a {
+      color: var(--offwhite);
+      padding: 8px 12px;
+      margin: 0 4px;
+      text-decoration: none;
+      border: 1px solid #330000;
+      transition: all 0.3s;
+    }
+
+    .pagination a:hover {
+      background: #330000;
+      color: #ff0000;
+      border-color: #ff0000;
+      text-shadow: 0 0 10px #ff0000;
+      animation: glitch 0.3s;
+    }
+
+    .pagination a.current {
+      background: #660000;
+      color: #fff;
+      border-color: #ff0000;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #440000;
+      font-size: 0.9rem;
+      border-top: 1px solid #220000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <a href="https://deth-boi.github.io/revolutionofthedispossessed">MAIN</a>
+    <a href="../library.html">LIBRARY</a>
+    <a href="../gallery.html">GALLERY</a>
+    <a href="https://deth-boi.github.io/revolutionofthedispossessed/shooters.html">ARCHIVE</a>
+    <a href="../affiliations.html">AFFILIATIONS</a>
+    <a href="../contact.html">CONTACT</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Left ASCII AK -->
+    <pre class="side-ascii left-ascii">
+⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠰⣶⣶⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⣿⣿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⠀
+⠀⢺⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣷⡄
+⠀⠉⣿⣿⣿⣿⣿⣀⣀⣤⣴⣾⣿⣿⣿⣿⣿⠟⠁
+⠀⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀
+⢐⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠀
+⠈⢸⣿⣿⣿⣿⡿⢿⢏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠃⢸⣿⣿⣿⣿⣇⠀⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡄⢸⣿⣿⣿⣿⣯⣥⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⢹⣿⣿⣏⠈⠀⠀⠀⠉⠙⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <!-- Right ASCII AK (mirrored) -->
+    <pre class="side-ascii right-ascii">
+⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠰⣶⣶⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣼⣿⣿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⠀
+⠀⢺⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣷⡄
+⠀⠉⣿⣿⣿⣿⣿⣀⣀⣤⣴⣾⣿⣿⣿⣿⣿⠟⠁
+⠀⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀
+⢐⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠀
+⠈⢸⣿⣿⣿⣿⡿⢿⢏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠃⢸⣿⣿⣿⣿⣇⠀⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡄⢸⣿⣿⣿⣿⣯⣥⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⢹⣿⣿⣏⠈⠀⠀⠀⠉⠙⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⡀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢾⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <!-- Header with floating title + dropdown -->
+    <div class="header">
+      <h1 class="main-title">Spoils Of War</h1>
+      
+      <div class="dropdown">
+        <button class="dropbtn">▼ CHAPTERS</button>
+        <div class="dropdown-content">
+          <a href="page_01.html">I - Call To Arms</a>
+          <a href="page_02.html">II - Wrathful Liberation</a>
+          <a href="page_03.html">III - Revolution of the Dispossessed</a>
+          <a href="page_04.html">IV - Burning The 4 Corners</a>
+          <a href="page_05.html">V - Rupture</a>
+          <a href="page_06.html">VI - Wartime</a>
+          <a href="page_07.html">VII - Power To The People</a>
+          <a href="page_08.html">VIII - Baptism By Fire</a>
+          <a href="page_09.html">IX - The Great Unmaking</a>
+          <a href="page_10.html">X - Spoils Of War</a>
+          <a href="page_11.html">XI - Total Negation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+       <p></p>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <strong>PAGE_</strong>
+      <a href="page_01.html">01</a>
+      <a href="page_02.html">02</a>
+      <a href="page_03.html">03</a>
+      <a href="page_04.html">04</a>
+      <a href="page_05.html">05</a>
+      <a href="page_06.html">06</a>
+      <a href="page_07.html">07</a>
+      <a href="page_08.html">08</a>
+      <a href="page_09.html">09</a>
+      <a href="page_10.html" class="current">10</a>
+      <a href="page_11.html">11</a>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 1997-2026 • ESTABLISHED IN STRUGGLE
+  </footer>
+
+  <script>
+    // Simple glitch enhancement on all links
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.style.animation = 'glitch 0.4s linear';
+        setTimeout(() => {
+          el.style.animation = '';
+        }, 400);
+      });
+    });
+  </script>
+</body>
+</html>
